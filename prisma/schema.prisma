@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  
 }
 
 datasource db {
@@ -10,3 +11,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
+model User {
+  id        Int     @default(autoincrement()) @id
+  email    String  @unique
+  name     String?
+  phone    String
+  address  String 
+  createdAt  DateTime     @default(now())
+  role      Role          @default(User)
+
+}
+
+enum Role{
+  User
+}
