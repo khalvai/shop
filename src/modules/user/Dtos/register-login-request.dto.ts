@@ -1,4 +1,5 @@
 import {
+    IsEmail,
   IsNotEmpty,
   IsNumber,
   IsString,
@@ -6,9 +7,12 @@ import {
   MinLength,
 } from 'class-validator';
 
-export class RegisterLoginRequestDto {
+export class LoginByEmialRequestDto {
   @IsString()
   @IsNotEmpty({message:"should have value"})
-  emailOrPhoneNumber: string;
+  @IsEmail()
+  email: string;
+
+
 }
 

@@ -1,17 +1,34 @@
-import { Body, Controller, Param, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Param,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { Post, Get } from '@nestjs/common';
-import { RegisterLoginRequestDto } from './Dtos/register-login-request.dto';
+import { LoginByEmialRequestDto } from './Dtos/register-login-request.dto';
 
 @Controller('users')
 export class UserController {
-  @Post('login-register')
+
+  
+  @Post('loginByEmail')
+  async loginByEmail() {}
+
   @UsePipes(ValidationPipe)
-  async siginIn(@Body() loginRegisterDto: RegisterLoginRequestDto) {
+  @Post('loginByPhoneNumber')
+  async lgoinByPhone() {}
+
+  @UsePipes(ValidationPipe)
+  @Post('/loginByemailAndPassword')
+  @UsePipes(ValidationPipe)
+  async loginByEmailAndPassword(
+    @Body() loginRegisterDto: LoginByEmialRequestDto,
+  ) {
     return await loginRegisterDto;
   }
 
-  @Get(':id')
-  async findUserById(@Param('id') id) {
-    return await `user get by id`;
-  }
+  @UsePipes(ValidationPipe)
+  @Post('loginByPhoneAndPassword')
+  async loginByPhone() {}
 }
