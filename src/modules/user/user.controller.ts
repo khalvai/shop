@@ -1,11 +1,13 @@
-import { Controller, Param } from '@nestjs/common';
+import { Body, Controller, Param, UsePipes, ValidationPipe } from '@nestjs/common';
 import { Post, Get } from '@nestjs/common';
+import { RegisterLoginRequestDto } from './Dtos/register-login-request.dto';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
   @Post('login-register')
-  async siginIn() {
-    return await `user sigin in`;
+  @UsePipes(ValidationPipe)
+  async siginIn(@Body() loginRegisterDto: RegisterLoginRequestDto) {
+    return await loginRegisterDto;
   }
 
   @Get(':id')
