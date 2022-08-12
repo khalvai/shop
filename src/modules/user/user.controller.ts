@@ -9,7 +9,7 @@ import { Post, Get } from '@nestjs/common';
 import {
   LoginByEmailRequestDto,
   PhoneNumberAndPasswordDto,
-} from './Dtos/register-login-request.dto';
+} from './Dtos/login-phone-password.dto';
 
 @Controller('users')
 export class UserController {
