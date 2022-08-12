@@ -17,7 +17,7 @@ export class LoginByEmailRequestDto {
 
 export class PhoneNumberAndPasswordDto {
   @IsPhoneNumber('IR', { message: 'phone number should be correct' })
-  phoneNo: string;
+  phoneNumber: string;
 
   @IsString()
   @IsNotEmpty()
