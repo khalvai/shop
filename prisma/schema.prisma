@@ -20,3 +20,13 @@ model User {
  password  String?
 }
 
+model NlUser { // not loggedin user 
+  phone  String @unique()
+  
+  try    Int  @default(0)
+
+  reason String
+  code   Int
+  lastResendTime  DateTime
+ 
+}

@@ -6,6 +6,7 @@ export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async saveByPhoneAndPassword(user: User) {
+    
     return await this.prisma.user.create({
       data: { phone: user.phone, password: user.password },
     });

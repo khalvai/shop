@@ -8,7 +8,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-export class LoginByEmailRequestDto {
+export class EmialDto {
   @IsString()
   @IsNotEmpty({ message: 'should have value' })
   @IsEmail()
@@ -25,3 +25,12 @@ export class PhoneNumberAndPasswordDto {
   @MinLength(8, { message: "Password shouldn't be less than 8 letter" })
   password: string;
 }
+
+export class PhoneDto{
+  @IsPhoneNumber('IR', { message: 'phone number should be correct' })
+  phoneNumber: string;
+}
+
+
+
+
