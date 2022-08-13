@@ -20,8 +20,11 @@ model User {
  password  String?
 }
 
-model NlUser { // not loggedin user 
-  phone  String @unique()
+model verification { // not loggedin user 
+
+  id        Int     @default(autoincrement()) @id
+  
+  phone  String      @unique()
   
   try    Int  @default(0)
 

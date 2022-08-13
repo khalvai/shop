@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { User } from '../interfaces/user-interface';
+import { User, Verification } from '../interfaces/user-interface';
+
 @Injectable()
 export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async saveByPhoneAndPassword(user: User) {
-    
     return await this.prisma.user.create({
       data: { phone: user.phone, password: user.password },
     });
@@ -20,15 +20,39 @@ export class UserRepository {
     });
   }
 
-  async findUserByEmail(userDto: User) {
+  async findUserByEmail(emial: string) {
     return await this.prisma.user.findFirst({
       where: {
-        email: userDto.emial,
+        email: emial,
       },
     });
+  }
 
- //https://yewtu.be/watch?v=lteTsTcPRMY  
+  async findVerificationByPhone(phone: string) {
+    return await this.prisma.verification.findFirst({
+      where: {
+        phone: phone,
+      },
+    });
+  }
 
-
+  async upsertVerification(verification: Verification) {
+    return await this.prisma.verification.upsert({
+      where: {
+        phone: verification.phone,
+      },
+      update: {
+        code: verification.code,
+        lastResendTime: new Date(),
+        reason: verification.reason,
+        try: { increment: 1 },
+      },
+      create: {
+        phone: verification.phone,
+        code: verification.code,
+        lastResendTime: new Date(),
+        reason: verification.reason,
+      },
+    });
   }
 }

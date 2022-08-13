@@ -8,32 +8,22 @@ import {
 import { Post, Get } from '@nestjs/common';
 import {
   EmialDto,
-  PhoneNumberAndPasswordDto,Phone
+  PhoneNumberAndPasswordDto,
+  PhoneDto,
 } from './Dtos/login-phone-password.dto';
+import { UserService } from './user.service';
 
 @Controller('users')
 export class UserController {
+  constructor(private readonly userService: UserService) {}
+
   @Post('loginByEmail')
   async loginByEmail() {}
 
   @UsePipes(ValidationPipe)
   @Post('loginByPhoneNumber')
-  async lgoinByPhone(@Body() phone) {
-    return await `it is working`;
+  async lgoinByPhone(@Body() phoneDto: PhoneDto) {
+    console.log("hey there");
+    return await this.userService.loginByPhone(phoneDto.phoneNumber);
   }
-
-  // @UsePipes(ValidationPipe)
-  // @Post('/loginByemailAndPassword')
-  // @UsePipes(ValidationPipe)
-  // async loginByEmailAndPassword(
-  //   @Body() email: EmialDto,
-  // ) {
-  //   return await loginRegisterDto;
-  // }
-
-  // @UsePipes(ValidationPipe)
-  // @Post('loginByPhoneAndPassword')
-  // async loginByPhone(@Body() phoneNoAndPasswordDto: PhoneNumberAndPasswordDto) {
-  //   return ``;
-  // }
 }
