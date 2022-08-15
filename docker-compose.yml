@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgres://postgres@127.0.0.1:5432/default_db
+    depends_on:
+      - postgres
+    network_mode: host
+  postgres:
+    image: postgres:alpine
+    environment:
+      POSTGRES_DB: default_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    network_mode: host
+
+volumes:
+  pgdata:
