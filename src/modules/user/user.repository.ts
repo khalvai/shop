@@ -12,10 +12,10 @@ export class UserRepository {
     });
   }
 
-  async findUserByPhone(userDto: User) {
+  async findByPhone(phone: string) {
     return await this.prisma.user.findFirst({
       where: {
-        phone: userDto.phone,
+        phone: phone,
       },
     });
   }
@@ -28,12 +28,12 @@ export class UserRepository {
     });
   }
 
-  async findVerificationByPhone(phone: string) {
-    return await this.prisma.verification.findFirst({
-      where: {
-        phone: phone,
-      },
-    });
+  async findVerificationByPhone(phon: string) {
+    return this.prisma.verification.findFirst({ where: { phone: phon } });
+  }
+
+  async saveByPhone(phone: string) {
+    return this.prisma.user.create({ data: { phone: phone } });
   }
 
   async upsertVerification(verification: Verification) {
@@ -43,14 +43,14 @@ export class UserRepository {
       },
       update: {
         code: verification.code,
-        lastResendTime: new Date(),
+        lastResendTime: Date.now(),
         reason: verification.reason,
         try: { increment: 1 },
       },
       create: {
         phone: verification.phone,
         code: verification.code,
-        lastResendTime: new Date(),
+        lastResendTime: Date.now(),
         reason: verification.reason,
       },
     });

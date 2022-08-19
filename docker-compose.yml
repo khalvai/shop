@@ -11,7 +11,10 @@ services:
       DATABASE_URL: postgres://postgres@127.0.0.1:5432/default_db
     depends_on:
       - postgres
-    network_mode: host
+    # network_mode: host
+
+    volumes:
+      - .:./backend
   postgres:
     image: postgres:alpine
     environment:

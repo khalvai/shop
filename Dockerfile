@@ -2,10 +2,13 @@ FROM node:16-alpine
 
 WORKDIR /backend
 
-COPY . .
+COPY *.json ./
+
 
 RUN npm install
 
 RUN npm run build
+COPY . .
 
-CMD [ "node", "dist/main.js" ]
+
+CMD [ "npm","run", "start:dev" ]

@@ -10,6 +10,7 @@ import {
   EmialDto,
   PhoneNumberAndPasswordDto,
   PhoneDto,
+  PhoneAndOtpDto,
 } from './Dtos/login-phone-password.dto';
 import { UserService } from './user.service';
 
@@ -23,7 +24,23 @@ export class UserController {
   @UsePipes(ValidationPipe)
   @Post('loginByPhoneNumber')
   async lgoinByPhone(@Body() phoneDto: PhoneDto) {
-    console.log("hey there");
+    console.log('hey there');
     return await this.userService.loginByPhone(phoneDto.phoneNumber);
   }
+
+
+  @UsePipes(ValidationPipe)
+  @Post('loginByPhoneNumber')
+  async verifyUser(user:PhoneAndOtpDto){
+    return await this.userService.verifyCodeAndGenerateToken(user)
+  }
+
+
+
+
+
+
+
+
+
 }

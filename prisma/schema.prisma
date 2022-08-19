@@ -22,14 +22,14 @@ model User {
 
 model verification { // not loggedin user 
 
-  id        Int     @default(autoincrement()) @id
+  id        Int     @default(autoincrement()) @id 
   
   phone  String      @unique()
   
   try    Int  @default(0)
 
   reason String
-  code   Int
-  lastResendTime  DateTime
+  code   Int    
+  lastResendTime  Int 
  
 }

@@ -4,6 +4,7 @@ import {
   IsNumber,
   IsPhoneNumber,
   IsString,
+  Length,
   MaxLength,
   MinLength,
 } from 'class-validator';
@@ -26,11 +27,14 @@ export class PhoneNumberAndPasswordDto {
   password: string;
 }
 
-export class PhoneDto{
+export class PhoneDto {
   @IsPhoneNumber('IR', { message: 'phone number should be correct' })
   phoneNumber: string;
 }
 
-
-
-
+export class PhoneAndOtpDto extends PhoneDto {
+  @IsNotEmpty()
+  @IsNumber()
+  @Length(6, 6, { message: 'code is invalid' })
+  code: number;
+}

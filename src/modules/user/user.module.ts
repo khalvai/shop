@@ -6,9 +6,10 @@ import { UserRepository } from './user.repository';
 import { OtpService } from './user.send.OTP';
 import { UserService } from './user.service';
 
+// const importsAndExports= [...UserRepository]
 @Module({
   controllers: [UserController],
-  providers: [UserRepository,UserService, OtpService],
-  imports: [PrismaService, PrismaModule],
+  providers: [UserRepository,UserService,OtpService],
+  imports: [],
 })
 export class UserModule {}
