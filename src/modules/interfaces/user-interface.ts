@@ -9,10 +9,10 @@ export interface User {
 }
 
 export class Verification {
-  code?: number;
+  code: string;
 
-  phone?: string;
+  phone: string;
   reason?: string;
 
-  attamp?: number;
+  try?: number;
 }
