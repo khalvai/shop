@@ -8,7 +8,11 @@ export class UserRepository {
 
   async saveByPhoneAndPassword(user: User) {
     return await this.prisma.user.create({
-      data: { phone: user.phone, password: user.password },
+      data: {
+        phone: user.phone,
+        password: user.password,
+        lastLoggedInTime: new Date().toISOString(),
+      },
     });
   }
 
@@ -33,7 +37,9 @@ export class UserRepository {
   }
 
   async saveByPhone(phone: string) {
-    return this.prisma.user.create({ data: { phone: phone } });
+    return this.prisma.user.create({
+      data: { phone: phone, lastLoggedInTime: new Date().toISOString() },
+    });
   }
 
   async upsertVerification(verification: Verification) {
@@ -43,14 +49,14 @@ export class UserRepository {
       },
       update: {
         code: verification.code,
-        lastResendTime: Date.now(),
+        lastResendTime: new Date().toISOString(),
         reason: verification.reason,
         try: { increment: 1 },
       },
       create: {
         phone: verification.phone,
         code: verification.code,
-        lastResendTime: Date.now(),
+        lastResendTime: new Date().toISOString(),
         reason: verification.reason,
       },
     });

@@ -3,7 +3,7 @@ import { PrismaModule } from '../prisma/prisma.module';
 import { PrismaService } from '../prisma/prisma.service';
 import { UserController } from './user.controller';
 import { UserRepository } from './user.repository';
-import { OtpService } from './user.send.OTP';
+import { OtpService } from '../auth/user.send.OTP';
 import { UserService } from './user.service';
 
 // const importsAndExports= [...UserRepository]
@@ -11,5 +11,6 @@ import { UserService } from './user.service';
   controllers: [UserController],
   providers: [UserRepository,UserService,OtpService],
   imports: [],
+  exports:[UserService]
 })
 export class UserModule {}

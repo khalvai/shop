@@ -21,18 +21,13 @@ export class UserController {
   @Post('loginByEmail')
   async loginByEmail() {}
 
-  @UsePipes(ValidationPipe)
-  @Post('loginByPhoneNumber')
-  async lgoinByPhone(@Body() phoneDto: PhoneDto) {
-    console.log('hey there');
-    return await this.userService.loginByPhone(phoneDto.phoneNumber);
-  }
+  
 
 
   @UsePipes(ValidationPipe)
   @Post('loginByPhoneNumber')
   async verifyUser(user:PhoneAndOtpDto){
-    return await this.userService.verifyCodeAndGenerateToken(user)
+    // return await this.userService.verifyCodeAndGenerateToken(user)
   }
 
 
