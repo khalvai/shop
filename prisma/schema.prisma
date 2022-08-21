@@ -17,9 +17,12 @@ model User {
   phone    String?
   address  String?
   createdAt  DateTime     @default(now())
- password  String?
+  password  String?
+  lastLoggedInTime DateTime 
 }
 
+
+ 
 model verification { // not loggedin user 
 
   id        Int     @default(autoincrement()) @id 
@@ -29,7 +32,7 @@ model verification { // not loggedin user
   try    Int  @default(0)
 
   reason String
-  code   Int    
-  lastResendTime  Int 
+  code   String    
+  lastResendTime  DateTime  
  
 }
