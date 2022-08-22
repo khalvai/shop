@@ -2,12 +2,15 @@ import {
   Body,
   Controller,
   Post,
+  Res,
   UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { PhoneAndOtpDto, PhoneDto } from './Dtos/login-request.dto';
+import { Response } from 'express';
+
 
 @Controller('auth')
 export class AuthController {
@@ -24,8 +27,9 @@ export class AuthController {
 
   @UsePipes(ValidationPipe)
   @Post('verficationOTP')
-  async verifyAndgenerateToken(@Body() Dto: PhoneAndOtpDto) {
+  async verifyAndgenerateToken(@Res({passthrough:true}) res:Response,@Body() phoneAndOtpDto: PhoneAndOtpDto) {
 
-    return await this.authService.verifyCodeAndGenerateToken(Dto.phoneNumber,Dto.code);
+  const token =await this.authService.verifyCodeAndGenerateToken(phoneAndOtpDto.phoneNumber,phoneAndOtpDto.code);
+       res.cookie("access-token",token)
   }
 }
