@@ -6,7 +6,6 @@ import { UserRepository } from './user.repository';
 import { OtpService } from '../auth/user.send.OTP';
 import { UserService } from './user.service';
 
-// const importsAndExports= [...UserRepository]
 @Module({
   controllers: [UserController],
   providers: [UserRepository,UserService,OtpService],

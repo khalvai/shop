@@ -11,7 +11,6 @@ import { AuthService } from './auth.service';
 import { PhoneAndOtpDto, PhoneDto } from './Dtos/login-request.dto';
 import { Response } from 'express';
 
-
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -27,9 +26,15 @@ export class AuthController {
 
   @UsePipes(ValidationPipe)
   @Post('verficationOTP')
-  async verifyAndgenerateToken(@Res({passthrough:true}) res:Response,@Body() phoneAndOtpDto: PhoneAndOtpDto) {
-
-  const token =await this.authService.verifyCodeAndGenerateToken(phoneAndOtpDto.phoneNumber,phoneAndOtpDto.code);
-       res.cookie("access-token",token)
+  async verifyAndgenerateToken(
+    @Res({ passthrough: true }) res: Response,
+    @Body() phoneAndOtpDto: PhoneAndOtpDto,
+  ) {
+    const token = await this.authService.verifyCodeAndGenerateToken(
+      phoneAndOtpDto.phoneNumber,
+      phoneAndOtpDto.code,
+    );
+    console.log(token);
+    res.cookie('access-token', token);
   }
 }
