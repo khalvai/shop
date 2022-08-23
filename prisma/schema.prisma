@@ -50,7 +50,11 @@ model Product {
  
   price        Int 
   
+  off          Int
   
-  
+  createdAt DateTime 
+
+
+  updatedAt DateTime 
 }
 

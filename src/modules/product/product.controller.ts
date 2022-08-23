@@ -13,11 +13,10 @@ import { ProductService } from './product.service';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
-
-
   @Post()
+  @UsePipes(ValidationPipe)
   async createProduct(@Body() createProductDto: ProductDto) {
-    console.log(createProductDto.name);
+    return await this.productService.createProduct(createProductDto);
   }
 
   @Get()

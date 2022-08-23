@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Product } from '../interfaces/product.interface';
+import { CreateProduct, Product } from '../interfaces/product.interface';
 import { ProductRepository } from './product.repository';
 
 @Injectable()
@@ -16,5 +16,11 @@ export class ProductService {
     return products;
   }
 
-  
+  async createProduct(createProductDto: CreateProduct) {
+    const product = await this.productRepository.createProduct(
+      createProductDto,
+    );
+
+    return product;
+  }
 }

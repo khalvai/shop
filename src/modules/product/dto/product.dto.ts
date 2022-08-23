@@ -1,4 +1,4 @@
-import { IsInt, IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsIn, IsInt, IsNotEmpty, IsString, Length } from 'class-validator';
 
 export class ProductDto {
   @IsString()
@@ -10,16 +10,15 @@ export class ProductDto {
     message: 'description must be maximum 255 and  minimum 3 letter',
   })
   description: string;
- 
+
   @IsInt()
   @IsNotEmpty()
-   price: Number
+  numberInStock: number;
 
   @IsInt()
-  off?:Number
+  @IsNotEmpty()
+  price: number;
 
-  
-
-
-
+  @IsInt()
+  off: number;
 }
