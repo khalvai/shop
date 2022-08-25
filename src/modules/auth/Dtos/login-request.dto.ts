@@ -2,6 +2,7 @@ import {
   IsNotEmpty,
   IsNumber,
   IsPhoneNumber,
+  IsString,
   Length,
   Max,
   Min,
@@ -9,6 +10,8 @@ import {
 } from 'class-validator';
 
 export class PhoneDto {
+  @IsNotEmpty({ message: "phone number can't be empaty" })
+  @IsString()
   @IsPhoneNumber('IR', { message: 'phone number should be correct' })
   phoneNumber: string;
 }

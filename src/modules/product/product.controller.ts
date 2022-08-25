@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
+  Param,
   Post,
+  Put,
   Query,
   UsePipes,
   ValidationPipe,
@@ -18,10 +21,27 @@ export class ProductController {
   async createProduct(@Body() createProductDto: ProductDto) {
     return await this.productService.createProduct(createProductDto);
   }
+  
+    @Get()
+    @UsePipes(ValidationPipe)
+    async findByName(@Query('name') name: string) {
+      console.log('heu there');
+      return await this.productService.findByName(name);
+    }
 
   @Get()
   @UsePipes(ValidationPipe)
-  async findByName(@Query('name') name: string) {
-    return await this.productService.findByName(name);
+  async getAll() {
+    return await this.productService.getAll();
   }
+
+  @Delete(':id')
+  @UsePipes(ValidationPipe)
+  async deleteById(@Param('id') id: number) {
+    return await this.productService.deleteById(+id);
+  }
+ 
+
+
+
 }

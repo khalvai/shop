@@ -6,6 +6,10 @@ import { Product, CreateProduct } from '../interfaces/product.interface';
 export class ProductRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  async getAll(): Promise<Product[]> {
+    return this.prisma.product.findMany({});
+  }
+
   async findByName(name: string): Promise<Product[]> {
     return this.prisma.product.findMany({
       where: {
@@ -14,7 +18,15 @@ export class ProductRepository {
     });
   }
 
-  async createProduct(productDto: CreateProduct): Promise<Product> {
+  async findById(id: number) {
+    return this.prisma.product.findFirst({
+      where: {
+        id: id,
+      },
+    });
+  }
+
+  createProduct(productDto: CreateProduct): Promise<Product> {
     return this.prisma.product.create({
       data: {
         name: productDto.name,
@@ -28,4 +40,11 @@ export class ProductRepository {
     });
   }
 
+  deleteById(id: number): Promise<Product> {
+    return this.prisma.product.delete({
+      where: {
+        id: id,
+      },
+    });
+  }
 }

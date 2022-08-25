@@ -16,7 +16,6 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   // auth/login
-  @UsePipes(ValidationPipe)
   @Post('login')
   async login(@Body() phoneDto: PhoneDto) {
     return await this.authService.loginByPhone(phoneDto.phoneNumber);
@@ -24,7 +23,6 @@ export class AuthController {
 
   // auth/loginEmail
 
-  @UsePipes(ValidationPipe)
   @Post('verficationOTP')
   async verifyAndgenerateToken(
     @Res({ passthrough: true }) res: Response,

@@ -19,6 +19,7 @@ export class EmialDto {
 export class PhoneNumberAndPasswordDto {
   @IsPhoneNumber('IR', { message: 'phone number should be correct' })
   phoneNumber: string;
+  
 
   @IsString()
   @IsNotEmpty()
