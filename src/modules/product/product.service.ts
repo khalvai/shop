@@ -49,6 +49,17 @@ export class ProductService {
     return await this.productRepository.deleteById(id);
   }
 
+  async updateById(id: number, productDto: CreateProduct) {
+
+    const product = await this.findById(id);
+    const updatedProduct = await this.productRepository.updateById(
+      id,
+      productDto,
+    );
+
+    return updatedProduct;
+  }
+
   throwNotFoundError() {
     throw new HttpException('product not found', HttpStatus.NOT_FOUND);
   }

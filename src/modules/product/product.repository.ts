@@ -40,6 +40,18 @@ export class ProductRepository {
     });
   }
 
+  updateById(id: number, productDto: CreateProduct) {
+    return this.prisma.product.update({
+      where: {
+        id: id,
+      },
+      data: {
+        ...productDto,
+        updatedAt: new Date().toISOString(),
+      },
+    });
+  }
+
   deleteById(id: number): Promise<Product> {
     return this.prisma.product.delete({
       where: {
