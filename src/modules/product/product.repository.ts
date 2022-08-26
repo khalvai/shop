@@ -7,13 +7,16 @@ export class ProductRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async getAll(): Promise<Product[]> {
-    return this.prisma.product.findMany({});
+    return this.prisma.product.findMany({ include: { pictures: true } });
   }
 
   async findByName(name: string): Promise<Product[]> {
     return this.prisma.product.findMany({
       where: {
         name: name,
+      },
+      include: {
+        pictures: true,
       },
     });
   }
@@ -22,6 +25,9 @@ export class ProductRepository {
     return this.prisma.product.findFirst({
       where: {
         id: id,
+      },
+      include: {
+        pictures: true,
       },
     });
   }

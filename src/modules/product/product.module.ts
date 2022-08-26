@@ -7,6 +7,6 @@ import { ProductService } from './product.service';
   imports: [],
   controllers: [ProductController],
   providers: [ProductRepository, ProductService],
-  exports: [ProductRepository],
+  exports: [ProductRepository, ProductService],
 })
 export class ProductModule {}

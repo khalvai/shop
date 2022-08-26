@@ -105,6 +105,3 @@ export class AuthService {
     return this.jwtService.sign({ id: id }, { secret: jwtSecretKey });
   }
 }
-
-// https://github.com/marcomelilli/nestjs-email-authentication/blob/master/src/main.ts
-//https://www.youtube.com/watch?v=e5qk1Xruwso

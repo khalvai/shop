@@ -50,7 +50,6 @@ export class ProductService {
   }
 
   async updateById(id: number, productDto: CreateProduct) {
-
     const product = await this.findById(id);
     const updatedProduct = await this.productRepository.updateById(
       id,
