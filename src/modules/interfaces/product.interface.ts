@@ -5,19 +5,11 @@ export interface Product {
 
   description: string;
 
-  numberInStock: number;
-
-  price: number;
-
-  off: number;
-
   createdAt: Date;
 
   updatedAt: Date;
 
   pictures?: Array<Picture>;
-
-  // [index: number]: { id: number; url: string; productId: number };
 }
 
 export interface CreateProduct

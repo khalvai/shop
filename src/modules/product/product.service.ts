@@ -5,6 +5,8 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { CreateProduct, Product } from '../interfaces/product.interface';
+import { CreateVariant } from '../interfaces/variant-interface';
+import { UpdateProductDto } from './dto/update.product.dto';
 import { ProductRepository } from './product.repository';
 
 @Injectable()
@@ -49,11 +51,11 @@ export class ProductService {
     return await this.productRepository.deleteById(id);
   }
 
-  async updateById(id: number, productDto: CreateProduct) {
+  async updateById(id: number, updateProductDto: UpdateProductDto) {
     const product = await this.findById(id);
     const updatedProduct = await this.productRepository.updateById(
       id,
-      productDto,
+      updateProductDto,
     );
 
     return updatedProduct;

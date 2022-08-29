@@ -10,6 +10,7 @@ import { ProductService } from './modules/product/product.service';
 import { ProductModule } from './modules/product/product.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { PictureModule } from './modules/picture/picture.module';
+import { VariantModule } from './modules/variant/variant.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -19,6 +20,7 @@ import { PictureModule } from './modules/picture/picture.module';
     ProductModule,
     MulterModule.register({ dest: './uploads' }),
     PictureModule,
+    VariantModule,
   ],
   controllers: [AppController],
   providers: [AppService, ProductService],

@@ -6,13 +6,8 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
 import path = require('path');
 import { AppService } from './app.service';
-import { UpdateProductDto } from './modules/product/dto/product.dto';
-
 
 @Controller()
 export class AppController {
@@ -23,5 +18,4 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
-
 }

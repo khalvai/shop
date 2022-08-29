@@ -7,7 +7,7 @@ import {
   Length,
 } from 'class-validator';
 
-export class ProductDto {
+export class CreateProductDto {
   @IsString()
   @Length(3, 30, { message: 'name must be maximum 30 and  minimum 3 letter' })
   name: string;
@@ -17,43 +17,6 @@ export class ProductDto {
     message: 'description must be maximum 255 and  minimum 3 letter',
   })
   description: string;
-
-  @IsInt()
-  @IsNotEmpty()
-  numberInStock: number;
-
-  @IsInt()
-  @IsNotEmpty()
-  price: number;
-
-  @IsInt()
-  off: number;
 }
 
-export class UpdateProductDto {
-  @IsOptional()
-  @IsString()
-  @Length(3, 30, { message: 'name must be maximum 30 and  minimum 3 letter' })
-  name: string;
 
-  @IsOptional()
-  @IsString()
-  @Length(3, 255, {
-    message: 'description must be maximum 255 and  minimum 3 letter',
-  })
-  description: string;
-
-  @IsOptional()
-  @IsInt()
-  @IsNotEmpty()
-  numberInStock: number;
-
-  @IsOptional()
-  @IsInt()
-  @IsNotEmpty()
-  price: number;
-
-  @IsOptional()
-  @IsInt()
-  off: number;
-}

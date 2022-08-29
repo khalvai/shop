@@ -43,23 +43,41 @@ model Product {
   id Int @default(autoincrement()) @id
  
   name String
- 
-  numberInStock Int
 
   description  String  @db.VarChar(255)
- 
-  price        Int 
-  
-  off          Int
   
   createdAt DateTime 
 
-
   updatedAt DateTime 
+
+  variants     variant[] 
 
   pictures Picture[]
 
 }
+
+model variant {
+  id Int @default(autoincrement()) @id
+
+  name String @unique
+
+  numberInStock Int
+ 
+  price        Int 
+  
+  off          Int
+
+  product  Product   @relation(fields: [productId],references: [id],onDelete: Cascade,onUpdate: Cascade)
+
+  productId  Int       
+  
+  createdAt DateTime  
+
+  updatedAt DateTime 
+
+// @@unique([productId,name])
+}
+
 
 model Picture{
   id Int     @default(autoincrement()) @id

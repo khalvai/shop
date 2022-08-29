@@ -7,19 +7,17 @@ import {
   Post,
   Put,
   Query,
-  UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import { Get } from '@nestjs/common';
-import { ProductDto, UpdateProductDto } from './dto/product.dto';
+import { CreateProductDto } from './dto/product.dto';
+import { UpdateProductDto } from './dto/update.product.dto';
 import { ProductService } from './product.service';
 @Controller('products')
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
   @Post()
-  @UsePipes(ValidationPipe)
-  async createProduct(@Body() createProductDto: ProductDto) {
+  async createProduct(@Body() createProductDto: CreateProductDto) {
     return await this.productService.createProduct(createProductDto);
   }
 
