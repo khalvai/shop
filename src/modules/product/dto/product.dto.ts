@@ -17,6 +17,8 @@ export class CreateProductDto {
     message: 'description must be maximum 255 and  minimum 3 letter',
   })
   description: string;
+
+  @IsNotEmpty()
+  @IsInt()
+  price: number;
 }
-
-

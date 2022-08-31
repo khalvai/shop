@@ -5,6 +5,8 @@ export interface Product {
 
   description: string;
 
+  price: number;
+
   createdAt: Date;
 
   updatedAt: Date;
@@ -12,8 +14,8 @@ export interface Product {
   pictures?: Array<Picture>;
 }
 
-export interface CreateProduct
-  extends Omit<Product, 'id' | 'createdAt' | 'updatedAt'> {}
+// export interface CreateProduct
+//   extends Omit<Product, 'id' | 'createdAt' | 'updatedAt'> {}
 
 interface Picture {
   id: number;

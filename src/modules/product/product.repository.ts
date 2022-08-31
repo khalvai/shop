@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { Product, CreateProduct } from '../interfaces/product.interface';
+import { Product } from '../interfaces/product.interface';
 import { Variant, CreateVariant } from '../interfaces/variant-interface';
 import { retry } from 'rxjs';
 import { UpdateProductDto } from './dto/update.product.dto';
+import { CreateProductDto } from './dto/product.dto';
 
 @Injectable()
 export class ProductRepository {
@@ -20,7 +21,6 @@ export class ProductRepository {
       },
       include: {
         pictures: true,
-        variants: true,
       },
     });
   }
@@ -36,11 +36,12 @@ export class ProductRepository {
     });
   }
 
-  createProduct(productDto: CreateProduct): Promise<Product> {
+  createProduct(productDto: CreateProductDto): Promise<Product> {
     return this.prisma.product.create({
       data: {
         name: productDto.name,
         description: productDto.description,
+        price: productDto.price,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       },

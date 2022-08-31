@@ -44,6 +44,8 @@ model Product {
  
   name String
 
+  price Int
+
   description  String  @db.VarChar(255)
   
   createdAt DateTime 

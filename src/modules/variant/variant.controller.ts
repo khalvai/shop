@@ -21,13 +21,11 @@ export class VariantController {
     return await this.variantService.create(createVariantDto);
   }
 
-  @Get(':vid')
-  findAll() {
-    return this.variantService.findAll();
+   // varinat/productId/3
+  @Get('/productId/:pid')
+  async findAll(@Param('pid', ParseIntPipe) pid: number) {
+    return await this.variantService.findAll(pid);
   }
-
-   // vid:123456576879809-9876543
-  // 2x price numberInStock
 
   @Get(':id')
   findOne(@Param('id') id: string) {
@@ -35,12 +33,15 @@ export class VariantController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateVariantDto: UpdateVariantDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateVariantDto: UpdateVariantDto,
+  ) {
     return this.variantService.update(+id, updateVariantDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: string) {
     return this.variantService.remove(+id);
   }
 }

@@ -23,3 +23,4 @@ export class CreateVariantDto {
   @IsInt()
   productId: number;
 }
+
